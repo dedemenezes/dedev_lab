@@ -3,7 +3,7 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs" data-controller="flatpicker">
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :first_name,
                 required: true,
@@ -15,8 +15,8 @@
                 input_html: { autocomplete: "Last name" }%>
     <%= f.input :birth_date,
                 required: true,
-                autofocus: true,
-                input_html: { autocomplete: "Birth date" }%>
+                as: :string,
+                input_html: { autocomplete: "Birth date", class: 'datepicker' } %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>

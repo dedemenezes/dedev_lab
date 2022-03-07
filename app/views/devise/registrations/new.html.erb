@@ -3,23 +3,21 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs" data-controller="flatpicker">
     <%= f.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :first_name,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "First name" }%>
     <%= f.input :last_name,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "Last name" }%>
     <%= f.input :birth_date,
                 required: true,
-                autofocus: true,
-                input_html: { autocomplete: "Birth date" }%>
+                as: :string,
+                input_html: { autocomplete: "Birth date", class: 'datepicker' }%>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
