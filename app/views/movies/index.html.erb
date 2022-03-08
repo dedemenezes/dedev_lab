@@ -1,6 +1,19 @@
-<div class='container'>
-  <div class='row'></div>
+<div class='container my-3'>
+  <div class='row'>
+    <%= form_tag movies_path, method: :get, class: 'd-flex' do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a movie"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <div class='row justify-content-center'>
-    <%= render @movies %>
+    <% if @movies.all? Movie %>
+      <%= render @movies %>
+    <% else %>
+      <%= render 'movies_and_tv_shows', movies: @movies %>
+    <% end %>
   </div>
 </div>

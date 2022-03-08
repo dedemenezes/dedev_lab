@@ -1,0 +1,31 @@
+<% movies.each do |pg_doc| %>
+  <div class="col-12 col-sm-6 my-3">
+    <div class="movie_card" id="bright">
+      <div class="info_section">
+        <div class="movie_header">
+          <%= image_tag pg_doc.searchable.poster_url, class: 'locandina' %>
+          <h1><%= pg_doc.searchable.title %></h1>
+          <h4><%= pg_doc.searchable.release_date.year %>, DIRECTOR</h4>
+          <span class="minutes">117 min</span>
+          <p class="type">Action, Crime, Fantasy</p>
+        </div>
+        <div class="movie_desc">
+          <%# <p class="text"> %>
+          <%#= pg_doc.searchable.synopsis_first_sentence %>
+          <%# </p> %>
+        </div>
+        <div class="movie_social">
+          <ul>
+            <%# <li><i class="material-icons">share</i></li>
+            <li><i class="material-icons"></i></li>
+            <li><i class="material-icons">chat_bubble</i></li> %>
+            <li class="material-icons"><%= icon('fas', 'share-alt') %></li>
+            <li class="material-icons"><%= icon('fas', 'heart') %></li>
+            <li class="material-icons"><%= icon('fas', 'comment') %></li>
+          </ul>
+        </div>
+      </div>
+      <%= image_tag pg_doc.searchable.backdrop_url, class: 'blur_back bright_back movie__card_image' %>
+    </div>
+  </div>
+<% end %>
