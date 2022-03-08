@@ -6,6 +6,7 @@ puts 'Cleaning DB'
 
 User.destroy_all
 Movie.destroy_all
+TvShow.destroy_all
 
 puts "Seeding users"
 User.create! email: 'dede@teacher.com', password: 123456, first_name: "Andre", last_name: "Menezes", birth_date: "1988-02-20"
@@ -32,5 +33,26 @@ movies['results'].each do |movie|
   )
 end
 
-puts "Finished -> #{Movie.count} movies created"
+
+puts "Seeding TvShows"
+series_url = "https://api.themoviedb.org/3/tv/popular?api_key=#{ENV['TMDB_API_KEY']}&language=en-US&page=1"
+# binding.pry
+tv_shows_serialized = URI.open(series_url).read
+tv_shows = JSON.parse(tv_shows_serialized)
+tv_shows['results'].each do |tv_show|
+  # binding.pry
+  tv_show = TvShow.create!(
+    title: tv_show['name'],
+    synopsis: tv_show['overview'],
+    rating: tv_show['vote_average'].to_f * 10,
+    original_language: tv_show['original_language'],
+    original_title: tv_show['original_title'],
+    poster_url: "https://image.tmdb.org/t/p/w500#{tv_show['poster_path']}",
+    backdrop_url: "https://image.tmdb.org/t/p/w500#{tv_show['backdrop_path']}",
+    release_date: tv_show['first_air_date']
+  )
+end
+
+puts "Finished -> #{TvShow.count} tv_shows created"
+
 puts "zo/"
