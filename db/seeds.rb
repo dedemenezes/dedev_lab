@@ -26,8 +26,8 @@ movies['results'].each do |movie|
     rating: movie['vote_average'].to_f * 10,
     original_language: movie['original_language'],
     original_title: movie['original_title'],
-    poster_url: "https://image.tmdb.org/t/p/w500/#{movie['poster_path']}",
-    backdrop_url: "https://image.tmdb.org/t/p/w500/#{movie['backdrop_path']}",
+    poster_url: "https://image.tmdb.org/t/p/w500#{movie['poster_path']}",
+    backdrop_url: "https://image.tmdb.org/t/p/w500#{movie['backdrop_path']}",
     release_date: movie['release_date']
   )
 end
