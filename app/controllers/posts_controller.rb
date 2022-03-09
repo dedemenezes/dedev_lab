@@ -17,7 +17,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # raise
     @post.user = current_user
 
     if @post.save
@@ -31,6 +30,8 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      PostMailer.with(user: current_user).update_post_mail.deliver_later
+
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
@@ -39,15 +40,18 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    PostMailer.with(user: current_user).destroy_post_mail.deliver_later
+
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
   end
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    def post_params
-      params.require(:post).permit(:title, :url)
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :url)
+  end
 end
