@@ -36,6 +36,9 @@ gem 'simple_form'
 
 gem 'pg_search'
 
+# Generates qrcode
+gem "rqrcode", "~> 2.0"
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
