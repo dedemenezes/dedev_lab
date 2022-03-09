@@ -9,6 +9,7 @@ TvShow.destroy_all
 
 puts "Seeding users"
 User.create! email: 'dede@teacher.com', password: 123456, first_name: "Andre", last_name: "Menezes", birth_date: "1988-02-20"
+User.create! email: 'carla@teacher.com', password: 123456, first_name: "Carla", last_name: "Valdivia", birth_date: "1988-02-20"
 
 puts User.last.inspect
 
