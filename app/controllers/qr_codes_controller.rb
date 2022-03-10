@@ -8,20 +8,9 @@ class QrCodesController < ApplicationController
     # raise
     post = Post.find(params[:post_id])
 
-    qr = RQRCode::QRCode.new(@post.url)
-    @png_qr_code = qr.as_png
+    post.generate_upload_and_attach_new_qr_code
 
-    file = StringIO.new(@png_qr_code.to_s)
-    cloud_response = Cloudinary::Uploader.upload(file)
-    cloud_file = URI.open(cloud_response['secure_url'])
-
-    if !post.qr_code.attached?
-      post.qr_code.attach(io: cloud_file, filename: 'qr_code.png', content_type: 'image/png')
-      # SEND EMAIL
-      QrCodeMailer.with(qr_code_url: cloud_response['secure_url'], user: current_user)
-                  .new_qr_code_mail
-                  .deliver_later
-      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###################################33"
+    if post.qr_code.attached?
       redirect_to cloud_response['secure_url']
     else
       flash[:alert] = "QR Code was NOT created"
