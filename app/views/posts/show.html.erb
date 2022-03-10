@@ -10,5 +10,12 @@
   <%= @post.url %>
 </p>
 
+<% if @post.qr_code.attached? %>
+  <p>
+    <strong>QR Code:</strong>
+  </p>
+  <%= cl_image_tag @post.qr_code.key, height: 300, width: 300, crop: :fill %>
+<% end %>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

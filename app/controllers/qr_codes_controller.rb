@@ -1,10 +1,32 @@
 require 'rqrcode'
+require 'open-uri'
+
 class QrCodesController < ApplicationController
   before_action :set_post, only: :create
 
   def create
+    # raise
+    post = Post.find(params[:post_id])
+
     qr = RQRCode::QRCode.new(@post.url)
     @png_qr_code = qr.as_png
+
+    file = StringIO.new(@png_qr_code.to_s)
+    cloud_response = Cloudinary::Uploader.upload(file)
+    cloud_file = URI.open(cloud_response['secure_url'])
+
+    if !post.qr_code.attached?
+      post.qr_code.attach(io: cloud_file, filename: 'qr_code.png', content_type: 'image/png')
+      # SEND EMAIL
+      QrCodeMailer.with(qr_code_url: cloud_response['secure_url'], user: current_user)
+                  .new_qr_code_mail
+                  .deliver_later
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###################################33"
+      redirect_to cloud_response['secure_url']
+    else
+      flash[:alert] = "QR Code was NOT created"
+      render 'posts/show', post: post
+    end
   end
 
   private
