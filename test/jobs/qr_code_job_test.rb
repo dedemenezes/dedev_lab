@@ -1,6 +1,6 @@
 require "test_helper"
 
-class QrCodesControllerTest < ActionDispatch::IntegrationTest
+class QrCodeJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end
