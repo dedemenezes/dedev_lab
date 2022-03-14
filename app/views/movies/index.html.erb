@@ -45,7 +45,7 @@
           <%= f.input :original_title, wrapper_html: { class: 'hide_input',  data: { trip_form_target: 'input' }} %>
           <%= f.submit class: 'hide_input',data: { trip_form_target: 'input' } %>
         <% end %>
-        <button data-action='click->trip-form#next'>Next</button>
+        <button data-action='click->trip-form#next' data-trip-form-target='next'>Next</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
