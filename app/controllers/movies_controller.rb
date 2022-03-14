@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
+    @movie = Movie.new
     if params[:query].present?
       @movies = PgSearch.multisearch(params[:query])
       respond_to do |format|
@@ -14,5 +15,9 @@ class MoviesController < ApplicationController
         format.text { render partial: 'movie.html', locals: { movies: @movies } }
       end
     end
+  end
+
+  def create
+    raise
   end
 end

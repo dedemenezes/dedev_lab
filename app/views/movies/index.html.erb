@@ -22,3 +22,35 @@
     <% end %>
   </div>
 </div>
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#test">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div data-controller='trip-form' class="modal fade" id="test" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @movie do |f| %>
+          <%= f.input :title, wrapper_html: { class: 'show_input', data: { trip_form_target: 'title' } } %>
+          <%= f.input :synopsis, wrapper_html: { class: 'hide_input',  data: { trip_form_target: 'synopsis' }} %>
+          <%= f.input :original_title, wrapper_html: { class: 'hide_input',  data: { trip_form_target: 'original_title' }} %>
+          <%= f.submit %>
+        <% end %>
+        <button data-action='click->trip-form#next'>Next</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
