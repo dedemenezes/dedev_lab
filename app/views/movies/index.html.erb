@@ -40,10 +40,10 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for @movie do |f| %>
-          <%= f.input :title, wrapper_html: { class: 'show_input', data: { trip_form_target: 'title' } } %>
-          <%= f.input :synopsis, wrapper_html: { class: 'hide_input',  data: { trip_form_target: 'synopsis' }} %>
-          <%= f.input :original_title, wrapper_html: { class: 'hide_input',  data: { trip_form_target: 'original_title' }} %>
-          <%= f.submit %>
+          <%= f.input :title, wrapper_html: { class: 'show_input', data: { trip_form_target: 'input' } } %>
+          <%= f.input :synopsis, wrapper_html: { class: 'hide_input',  data: { trip_form_target: 'input' }} %>
+          <%= f.input :original_title, wrapper_html: { class: 'hide_input',  data: { trip_form_target: 'input' }} %>
+          <%= f.submit class: 'hide_input',data: { trip_form_target: 'input' } %>
         <% end %>
         <button data-action='click->trip-form#next'>Next</button>
       </div>
