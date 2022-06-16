@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
   belongs_to :manager, class_name: 'User'
-  validates :name, :manager, presence: true
+  has_many :assignments
+  validates :name, :manager,:expected_end_date, :capacity, presence: true
 end

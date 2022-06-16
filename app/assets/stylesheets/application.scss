@@ -12,3 +12,27 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.dot {
+  border: 2px solid black;
+  height: 2px;
+  width: 2px;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.modal-header__sub-title {
+  display: flex;
+  // justify-content: space-evenly;
+  align-items: center;
+  font-size: .9rem;
+  font-weight: lighter;
+  color: #717171;
+}
+.modal-header__sub-title > small, span {
+  margin-right: 12px;
+}
+
+.limit-date {
+  display: inline-block;
+}

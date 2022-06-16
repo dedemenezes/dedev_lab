@@ -1,0 +1,17 @@
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Manager</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <%= render 'task_row', task: task %>
+
+      <% end %>
+    </tbody>
+  </table>
+</div>

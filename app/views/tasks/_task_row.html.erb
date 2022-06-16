@@ -1,0 +1,37 @@
+<tr>
+  <td><%= task.id %></td>
+  <td><%= task.name %></td>
+  <td><%= task.manager.email %></td>
+  <td><%= link_to 'Assign contributor', '#', remote: true, data: { bs_toggle: "modal", bs_target: "#exampleModal" } %></td>
+</tr>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-header__content">
+          <h5 class="modal-title" id="exampleModalLabel"><%= task.name %></h5>
+          <div class="modal-header__sub-title">
+            <small class='modal-title__sub'>
+              <%= task.expected_end_date.strftime('%d/%m') %>
+            </small>
+            <span class='dot'></span>
+            <div class="limit-date">
+              <%= icon('far','clock') %>
+              <small>
+                <%= task.expected_end_date.strftime('%H:%M') %>
+              </small>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'assignments/new', task: task %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>

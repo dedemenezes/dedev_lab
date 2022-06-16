@@ -35,7 +35,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 
 gem 'pg_search'
-
+gem 'faker'
 gem 'cloudinary', '~> 1.16.0'
 
 # Generates qrcode
