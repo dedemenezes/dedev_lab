@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :qr_codes, only: :create
   end
+
+  resources :tasks, only: :index
+
 end
