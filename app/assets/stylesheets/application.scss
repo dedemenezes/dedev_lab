@@ -28,11 +28,18 @@
   font-size: .9rem;
   font-weight: lighter;
   color: #717171;
+  p {
+    margin-bottom: 0;
+  }
+  i {
+    margin-right: 4px;
+  }
 }
-.modal-header__sub-title > small, span {
-  margin-right: 12px;
+.modal-header__sub-title > p, span{
+  margin-right: 16px;
 }
 
 .limit-date {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }

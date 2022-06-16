@@ -12,15 +12,15 @@
         <div class="modal-header__content">
           <h5 class="modal-title" id="exampleModalLabel"><%= task.name %></h5>
           <div class="modal-header__sub-title">
-            <small class='modal-title__sub'>
+            <p class='modal-title__sub'>
               <%= task.expected_end_date.strftime('%d/%m') %>
-            </small>
+            </p>
             <span class='dot'></span>
             <div class="limit-date">
               <%= icon('far','clock') %>
-              <small>
+              <p>
                 <%= task.expected_end_date.strftime('%H:%M') %>
-              </small>
+              </p>
             </div>
           </div>
         </div>
