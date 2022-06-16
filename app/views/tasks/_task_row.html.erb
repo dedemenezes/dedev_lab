@@ -26,12 +26,31 @@
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <%= render 'assignments/new', task: task %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <%= simple_form_for [task, @assignment] do |f| %>
+        <div class="modal-body">
+          <% @users.each do |user| %>
+            <div class="row align-items-center">
+              <div class="col-2">
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{user.nickname}", class: 'avatar-large' %>
+              </div>
+              <div class="col-4">
+                <p class="mb-0"><%= user.name %></p>
+              </div>
+              <div class="col-4">
+                <p class="mb-0"><%= user.nickname %></p>
+              </div>
+              <div class="col-2">
+                <%= f.association :contributor, value_method: :id, as: :check_boxes, wrapper_html: { class: 'input--hide' } %>
+                <input type="checkbox" name="user" value="<%= user.id %>" id="<%= dom_id(user) %>">
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%# <button type="button" class="btn btn-primary">Save changes</button> %>
+          <%= f.submit "Assign contributors", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
   </div>

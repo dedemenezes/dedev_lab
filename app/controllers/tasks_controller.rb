@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.joins(:manager).all
     @assignment = Assignment.new
     @users = User.all
   end
