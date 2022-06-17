@@ -7,5 +7,6 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @assignment = Assignment.new
   end
 end

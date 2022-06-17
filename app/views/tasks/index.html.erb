@@ -11,8 +11,15 @@
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
-        <%= render 'task_row', task: task %>
-
+        <tr class='task-row'>
+          <td><%= task.id %></td>
+          <td><%= task.name %></td>
+          <td><%= task.manager.email %></td>
+          <td><%= task.capacity %></td>
+          <td><%= task.assignments.size %></td>
+          <td><%= link_to 'show', task_path(task) %></td>
+          <td><%#= link_to 'Assign contributor', '#', remote: true, data: { bs_toggle: "modal", bs_target: "#task_#{task.id}" } %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

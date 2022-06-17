@@ -1,13 +1,6 @@
-<tr>
-  <td><%= task.id %></td>
-  <td><%= task.name %></td>
-  <td><%= task.manager.email %></td>
-  <td><%= task.capacity %></td>
-  <td><%= task.assignments.size %></td>
-  <td><%= link_to 'Assign contributor', '#', remote: true, data: { bs_toggle: "modal", bs_target: "#exampleModal" } %></td>
-</tr>
+
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="<%= dom_id(task) %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

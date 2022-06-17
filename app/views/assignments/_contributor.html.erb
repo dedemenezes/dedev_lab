@@ -1,0 +1,19 @@
+<div class="col-2">
+  <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{b.object.nickname}", class: 'avatar-large' %>
+</div>
+<div class="col-4">
+  <p class="mb-0"><%= b.object.name %></p>
+</div>
+<div class="col-4">
+  <p class="mb-0"><%= b.object.nickname %></p>
+</div>
+<div class="col-2" data-controller='fill-check-box'>
+  <%= b.check_box %>
+  <% if false %>
+    <input type="checkbox"
+          name="user"
+          data-action='change->fill-check-box#updateInput'
+          value="<%= b.object.id %>"
+          id="<%= dom_id(b.object) %>">
+  <% end %>
+</div>

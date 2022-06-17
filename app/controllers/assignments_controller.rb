@@ -1,17 +1,20 @@
 class AssignmentsController < ApplicationController
   def create
     @task = Task.find(params[:task_id])
-    contributors_ids = assignment_params[:contributor_id].reject(&:empty?)
+    contributors_ids = assignment_params[:contributor].reject(&:empty?)
     assignments = contributors_ids.map do |id|
       contributor = User.find(id)
       Assignment.new(contributor: contributor, task: @task)
     end
-    assignments.each { |assignment| assignment.save }
-    @tasks = Task.all
-    render 'tasks/index', tasks: @tasks
+    if assignments.all? { |assignment| assignment.save }
+      redirect_to task_path(@task)
+    else
+      flash[:alert] = assignments.map { |assignment| assignment.errors.messages }.uniq.join.capitalize
+      render 'tasks/show', task: @task, assignment: assignments.last
+    end
   end
 
   def assignment_params
-    params.require(:assignment).permit(contributor_id: [])
+    params.require(:assignment).permit(contributor: [])
   end
 end

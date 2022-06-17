@@ -1,2 +1,7 @@
-<%# show users %>
-
+<%= simple_form_for [task, assignment] do |f| %>
+  <%= f.collection_check_boxes :contributor, User.all, :id, :nickname do |b| %>
+    <%# <%= raise %>
+    <%= b.label(class: 'row align-items-center') { render 'assignments/contributor', b: b } %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
