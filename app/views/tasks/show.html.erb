@@ -1,0 +1,18 @@
+<div class="menu-layout">
+  <%= render 'shared/menu' %>
+  <div class="content">
+    <%= render 'top_menu' %>
+    <div class="task__content">
+      <div class="content__header">
+        <h1>Create brand mood boards</h1>
+        <p class='text-muted'>Assemble three distinct mood boards for client consideration</p>
+      </div>
+      <div class="assignments">
+        <% @task.assignments.each do |assignment| %>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{assignment.contributor.nickname}", class: 'avatar-large' %>
+        <% end %>
+        <%= link_to '+', task_assignments_path(@task), method: :post, class: 'btn__plus' %>
+      </div>
+    </div>
+  </div>
+</div>

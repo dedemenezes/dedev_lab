@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :qr_codes, only: :create
   end
 
-  resources :tasks, only: :index do
+  resources :tasks, only: %i[index show] do
     resources :assignments, only: :create
   end
 end

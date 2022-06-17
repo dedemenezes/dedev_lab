@@ -47,3 +47,31 @@
 .input--hide {
   display: none;
 }
+
+
+.menu-layout {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.menu {
+  height: 100vh;
+}
+
+.menu__logo {
+  font-size: 3rem;
+  color: #ffffff
+}
+
+.task__content {
+  margin: 44px 140px; /*big media query*/
+}
+
+.btn__plus {
+  background-color: lightgray;
+  padding: 4px 12px;
+  border-radius: 100%;
+  text-decoration: none;
+  color: darkgreen;
+  font-size: 1.5rem;
+}

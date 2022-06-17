@@ -18,14 +18,6 @@ User.create!(
   birth_date: "1988-02-20",
   nickname: 'dedemenezes'
 )
-2.times do
-  Task.create!(
-    name: "Buy #{Faker::Game.platform}",
-    manager: User.last,
-    expected_end_date: Date.today + (1..30).to_a.sample,
-    capacity: 1
-  )
-end
 User.create!(
   email: 'carla@teacher.com',
   password: 123456,
@@ -34,14 +26,6 @@ User.create!(
   birth_date: "1988-02-20",
   nickname: 'cvaldivia83'
 )
-3.times do
-  Task.create!(
-    name: "Travel to #{Faker::Movies::StarWars.planet}",
-    manager: User.last,
-    expected_end_date: Date.today + (365..789).to_a.sample,
-    capacity: 4
-  )
-end
 User.create!(
   email: 'belisabettega@teacher.com',
   password: 123456,
@@ -50,14 +34,6 @@ User.create!(
   birth_date: "1988-02-20",
   nickname: 'belisabettega'
 )
-3.times do |t|
-  Task.create!(
-    name: "Finish #{t + 1}",
-    manager: User.last,
-    expected_end_date: Date.today + (30..90).to_a.sample,
-    capacity: 3
-  )
-end
 User.create!(
   email: 'pessanhadavi@teacher.com',
   password: 123456,
@@ -66,13 +42,15 @@ User.create!(
   birth_date: "1988-02-20",
   nickname: 'pessanhadavi'
 )
-3.times do |t|
-  Task.create!(
-    name: "Start #{t + 1}",
-    manager: User.last,
-    expected_end_date: Date.today + (1..30).to_a.sample,
-    capacity: 2
-  )
+4.times do |n|
+  rand(1..3).times do |n_two|
+    Task.create!(
+      name: "task #{n_two + 1}",
+      manager: User.find(n + 1),
+      expected_end_date: Date.today + (1..30).to_a.sample,
+      capacity: rand(1..4)
+    )
+  end
 end
 puts User.last.inspect
 
