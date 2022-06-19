@@ -40,17 +40,17 @@
             <% end %>
           </div>
           <div class="section__content">
-            <ul>
+            <ul data-controller='sortable'>
               <% @task.checklist_items.each do |item| %>
                 <li class="item__row">
                   <%= button_tag type: 'button', class: 'butones', style: 'border: 0; padding: 0; text-align: start; opacity: 0.5;' do %>
                     <i class="fas fa-grip-lines"></i>
                   <% end %>
-                  <div class="item__completed">
-                    <input type="checkbox" name="completed" id="<%= dom_id(item) %>">
+                  <div class="item__completed" >
+                    <input type="checkbox" name="completed" id="<%= dom_id(item) %>" class="ignore-elements">
                     <%# <div class="checkbox"></div> %>
                   </div>
-                  <p><%= item.content %></p>
+                  <p class="ignore-elements"><%= item.content %></p>
                 </li>
               <% end %>
             </ul>
