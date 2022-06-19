@@ -1,7 +1,7 @@
-<div class="assignments postion-relative">
+<div class="assignments postion-relative" style='margin-bottom: 2rem;'>
   <% @task.assignments.each_with_index do |assignment, index| %>
     <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{assignment.contributor.nickname}", class: "avatar #{'over-user' if index < assignments.size}" %>
-    
+
   <% end %>
   <!-- Button trigger modal -->
   <%= button_tag '+', type: 'button',

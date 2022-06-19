@@ -21,6 +21,11 @@
   display: inline-block;
 }
 
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
 .modal-header__sub-title {
   display: flex;
   // justify-content: space-evenly;

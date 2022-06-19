@@ -8,18 +8,18 @@
         <p class='text-muted'>Assemble three distinct mood boards for client consideration</p>
       </div>
       <%= render 'tasks/assignments', task: @task %>
-      <div class="checklist__bar">
+      <div class="checklist__bar" style='margin-bottom: 1rem'>
         <% @task.checklist_items.order(:completed).each do |item| %>
           <div class='bar__step <%= 'bar__step-completed' if item.completed %>' style="width: <%= 100 / @task.checklist_items.size %>%;">
           </div>
         <% end %>
       </div>
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-items" style='margin-bottom: 2rem;'>
         <div class="icons">
           <i class="fas fa-bars"></i>
           <i class="fas fa-check check-icon"></i>
         </div>
-        <p>Due <%= time_ago_in_words(@task.expected_end_date) %></p>
+        <p class='mb-0'>Due <%= time_ago_in_words(@task.expected_end_date) %></p>
       </div>
       <div class="board" data-controller='task-board'>
         <div class="board__sections">
@@ -29,14 +29,32 @@
             <% end %>
           </ul>
         </div>
-        <div class="board__section">
-          <div class="board__header">
-            <h3>Checklist</h3>
+        <div class="section">
+          <div class="section__header">
+            <div class="section__header_title">
+              <h3>Checklist</h3>
               <%= button_tag '+', type: 'button', class: 'btn__plus' %>
+            </div>
+            <%= form_tag task_checklist_items_path(@task), method: :get do %>
+              <%= text_field_tag :filter, params[:filter], placeholder: 'Search...' %>
+            <% end %>
           </div>
-          <%= form_tag task_checklist_items_path(@task), method: :get do %>
-            <%= text_field_tag :filter, params[:filter], placeholder: 'Search...' %>
-          <% end %>
+          <div class="section__content">
+            <ul>
+              <% @task.checklist_items.each do |item| %>
+                <li class="item__row">
+                  <%= button_tag type: 'button', class: 'butones', style: 'border: 0; padding: 0; text-align: start; opacity: 0.5;' do %>
+                    <i class="fas fa-grip-lines"></i>
+                  <% end %>
+                  <div class="item__completed">
+                    <input type="checkbox" name="completed" id="<%= dom_id(item) %>">
+                    <%# <div class="checkbox"></div> %>
+                  </div>
+                  <p><%= item.content %></p>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

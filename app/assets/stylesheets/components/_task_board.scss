@@ -1,12 +1,14 @@
 .board__sections {
   background-color: rgb(235, 235, 235);
   border-radius: 8px;
+  margin-bottom: 1.85rem;
 }
+
+
 
 .board__sections > ul {
   display: grid;
-  padding-left: 0;
-  list-style: none;
+
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   align-items: center;
@@ -28,13 +30,14 @@
   color: #007bff;
 }
 
-.board__section {
+.section__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
-.board__header {
+.section__header_title {
   display: flex;
   align-items: center;
 
@@ -45,12 +48,25 @@
 
 }
 
-.board__section form > input {
+.section__header form > input {
   border: 2px solid lightgray;
   border-radius: 16px;
   padding: 4px 16px;
   outline-color: blueviolet !important;
 }
-// .board__section form > input:focus-visible {
-//   // border: 4px solid rgb(174, 174, 174);
-// }
+
+
+
+.item__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 20fr;
+  align-items: center;
+  margin-bottom: .75rem;
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+.item__row .butones:hover {
+  cursor: grab;
+}
