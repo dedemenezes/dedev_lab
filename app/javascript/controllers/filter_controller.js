@@ -25,6 +25,11 @@ export default class extends Controller {
       }
     })
     .then(response => response.text())
-    .then(data => console.log(data))
+    .then(data => this.#insertUpdatedList(data))
+    this.popupTarget.classList.add('input--hide')
+  }
+
+  #insertUpdatedList(data) {
+    this.listTarget.innerHTML = data
   }
 }

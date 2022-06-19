@@ -23,7 +23,7 @@
         <div class="icons">
           <i class="fas fa-bars bars-icon"></i>
           <i class="fas fa-check check-icon"></i>
-          <span><%= @checklist_size %></span>
+          <span><%= @checklist_items_completed.size %>/<%= @checklist_size %></span>
         </div>
         <p class='mb-0'>Due <%= time_ago_in_words(@task.expected_end_date) %></p>
       </div>
@@ -55,18 +55,7 @@
           </div>
           <div class="section__content">
             <ul data-controller='sortable' data-filter-target='list'>
-              <% @task.checklist_items.each do |item| %>
-                <li class="item__row">
-                  <%= button_tag type: 'button', class: 'butones', style: 'border: 0; padding: 0; text-align: start; opacity: 0.5;' do %>
-                    <i class="fas fa-grip-lines"></i>
-                  <% end %>
-                  <div class="item__completed" >
-                    <input type="checkbox" name="completed" id="<%= dom_id(item) %>" <%= 'checked' if item.completed %> class="ignore-elements">
-                    <%# <div class="checkbox"></div> %>
-                  </div>
-                  <p class="ignore-elements"><%= item.content %></p>
-                </li>
-              <% end %>
+              <%= render 'checklist_items/index', checklist_items: @task.checklist_items %>
             </ul>
           </div>
         </div>

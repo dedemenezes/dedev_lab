@@ -1,6 +1,6 @@
 <div class="assignments postion-relative" style='margin-bottom: 2rem;'>
   <% @task.assignments.each_with_index do |assignment, index| %>
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{assignment.contributor.nickname}", class: "avatar #{'over-user' if index < assignments.size}" %>
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{assignment.contributor.nickname}", class: "avatar #{'over-user' if index < @task.assignments.size}" %>
 
   <% end %>
   <!-- Button trigger modal -->
@@ -9,7 +9,8 @@
                         bs_toggle: 'modal',
                         bs_target: '#exampleModal'
                       },
-                      class: 'btn__plus' %>
+                      class: 'btn__plus',
+                      style: 'margin-left: 1rem;' %>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -32,13 +33,18 @@
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <%= render 'assignments/new', assignment: @assignment, task: @task %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        <%= simple_form_for [@task, @assignment] do |f| %>
+          <div class="modal-body">
+            <%= f.collection_check_boxes :contributor, User.all, :id, :nickname do |b| %>
+              <%# <%= raise %>
+              <%= b.label(class: 'row align-items-center') { render 'assignments/contributor', b: b } %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
