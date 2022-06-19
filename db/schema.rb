@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_16_014536) do
+ActiveRecord::Schema.define(version: 2022_06_19_044744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2022_06_16_014536) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contributor_id"], name: "index_assignments_on_contributor_id"
     t.index ["task_id"], name: "index_assignments_on_task_id"
+  end
+
+  create_table "checklist_items", force: :cascade do |t|
+    t.string "content"
+    t.bigint "task_id", null: false
+    t.boolean "completed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_checklist_items_on_task_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -127,6 +136,7 @@ ActiveRecord::Schema.define(version: 2022_06_16_014536) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assignments", "tasks"
   add_foreign_key "assignments", "users", column: "contributor_id"
+  add_foreign_key "checklist_items", "tasks"
   add_foreign_key "posts", "users"
   add_foreign_key "tasks", "users", column: "manager_id"
 end

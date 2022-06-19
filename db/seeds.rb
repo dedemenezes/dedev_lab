@@ -5,6 +5,7 @@ require 'faker'
 puts 'Cleaning DB'
 
 Assignment.destroy_all
+Task.destroy_all
 User.destroy_all
 # Movie.destroy_all
 # TvShow.destroy_all
@@ -50,7 +51,10 @@ User.create!(
       expected_end_date: Date.today + (1..30).to_a.sample,
       capacity: rand(1..4)
     )
+    ChecklistItem.create! content: "TODO: item #{n + n_two}", task: Task.last
+    ChecklistItem.create! content: "TODO: item #{n + n_two}", task: Task.last, completed: true
   end
+  ChecklistItem.last.update(completed: true)
 end
 puts User.last.inspect
 
