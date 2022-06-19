@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :tasks, only: %i[index show] do
     resources :assignments, only: :create
+    resources :checklist_items, only: :index
   end
 end

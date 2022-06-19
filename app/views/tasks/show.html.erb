@@ -34,8 +34,8 @@
             <h3>Checklist</h3>
               <%= button_tag '+', type: 'button', class: 'btn__plus' %>
           </div>
-          <%= form_tag checklist_items_path, method: :get do %>
-            <%= text_field_tag :filter, params[:filter] %>
+          <%= form_tag task_checklist_items_path(@task), method: :get do %>
+            <%= text_field_tag :filter, params[:filter], placeholder: 'Search...' %>
           <% end %>
         </div>
       </div>
