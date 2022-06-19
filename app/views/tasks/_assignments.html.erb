@@ -34,8 +34,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <%= simple_form_for [@task, @assignment] do |f| %>
+          <% if @assignment.errors.any? %>
+            <%= flash[:alert] = @assignment.errors.messages %>
+          <% end %>
           <div class="modal-body">
-            <%= f.collection_check_boxes :contributor, User.all, :id, :nickname do |b| %>
+            <%= f.collection_check_boxes :contributor, User.available(@task), :id, :nickname do |b| %>
               <%# <%= raise %>
               <%= b.label(class: 'row align-items-center') { render 'assignments/contributor', b: b } %>
             <% end %>

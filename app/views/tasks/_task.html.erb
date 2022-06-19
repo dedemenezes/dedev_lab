@@ -2,7 +2,7 @@
   <h1>Create brand mood boards</h1>
   <p class='text-muted'>Assemble three distinct mood boards for client consideration</p>
 </div>
-<%= render 'tasks/assignments', task: @task %>
+<%= render 'tasks/assignments', task: @task, assignment: @assignment %>
 
 <%= render 'tasks/progress_bar', checklist_size: @checklist_size, task: @task, checklist_items_completed: @checklist_items_completed %>
 

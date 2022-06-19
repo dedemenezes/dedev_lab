@@ -9,8 +9,9 @@ class AssignmentsController < ApplicationController
     if assignments.all? { |assignment| assignment.save }
       redirect_to task_path(@task)
     else
+      @assignment = assignments.last
       flash[:alert] = assignments.map { |assignment| assignment.errors.messages }.uniq.join.capitalize
-      render 'tasks/show', task: @task, assignment: assignments.last
+      render 'tasks/show', task: @task, assignment: @assignment
     end
   end
 
