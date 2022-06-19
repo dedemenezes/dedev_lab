@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :multiples, only: :create
     end
     resources :assignments, only: :create
-    resources :checklist_items, only: :index
+    resources :checklist_items, only: [:index]
   end
+  resources :checklist_items, only: :update
 end

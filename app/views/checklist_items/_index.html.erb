@@ -1,10 +1,35 @@
 <% checklist_items.each do |item| %>
   <li class="item__row">
-    <%= button_tag type: 'button', class: 'butones', style: 'border: 0; padding: 0; text-align: start; opacity: 0.5;' do %>
+    <%= content_tag :div, class: 'butones', style: 'border: 0; padding: 0; text-align: start; opacity: 0.5;' do %>
       <i class="fas fa-grip-lines"></i>
     <% end %>
     <div class="item__completed" >
-      <input type="checkbox" name="completed" id="<%= dom_id(item) %>" <%= 'checked' if item.completed %> class="ignore-elements">
+      <%= simple_form_for [item], data: {
+                                          update_checklist_item_target: 'form',
+                                        } do |f| %>
+        <%= f.input :completed,
+                    as: :boolean,
+                    label: false,
+                    wrapper: false,
+                    checked_value: true,
+                    unchecked_value: false,
+                    input_html: {
+                      data: {
+                        item_id: item.id,
+                        action: 'change->update-checklist-item#markAsCompleted'
+                      },
+                      class: 'ignore-elements'
+                    } %>
+      <% end %>
+      <% if false %>
+        <input  type="checkbox"
+                name="completed"
+                id="<%= dom_id(item) %>" <%= 'checked' if item.completed %>
+                class="ignore-elements"
+                data-
+                >
+      <% end %>
+
       <%# <div class="checkbox"></div> %>
     </div>
     <p class="ignore-elements"><%= item.content %></p>

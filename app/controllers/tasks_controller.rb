@@ -8,6 +8,6 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @assignment = Assignment.new
-    @checklist_items_completed, total = @task.checklist_items.where('')
+    @checklist_items_completed = @task.checklist_items_completed
   end
 end
