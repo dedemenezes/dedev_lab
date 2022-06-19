@@ -21,6 +21,24 @@
         </div>
         <p>Due <%= time_ago_in_words(@task.expected_end_date) %></p>
       </div>
+      <div class="board" data-controller='task-board'>
+        <div class="board__sections">
+          <ul>
+            <% %w[ Task File Activity ].each do |section| %>
+              <%= content_tag :li, section.capitalize, class: "#{'active active-hover' if section == 'Task'}", data: { action: 'click->task-board#changeSection', task_board_target: 'section'} %>
+            <% end %>
+          </ul>
+        </div>
+        <div class="board__section">
+          <div class="board__header">
+            <h3>Checklist</h3>
+              <%= button_tag '+', type: 'button', class: 'btn__plus' %>
+          </div>
+          <%= form_tag checklist_items_path, method: :get do %>
+            <%= text_field_tag :filter, params[:filter] %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
