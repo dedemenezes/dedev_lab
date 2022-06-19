@@ -7,7 +7,9 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @notes = @task.notes.order(created_at: :desc)
     @assignment = Assignment.new
-    @checklist_items_completed = @task.checklist_items_completed
+    @note = Note.new
+    # @checklist_items_completed = @task.checklist_items_completed
   end
 end

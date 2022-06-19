@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'checklist_items/index'
-  get 'tasks/index'
   devise_for :users
   root to: 'pages#home'
   resources :movies, only: %i[index create]
@@ -14,6 +12,8 @@ Rails.application.routes.draw do
     end
     resources :assignments, only: :create
     resources :checklist_items, only: [:index]
+    resources :notes, only: :create
   end
+  resources :notes, only: :index
   resources :checklist_items, only: :update
 end

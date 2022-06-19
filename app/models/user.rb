@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :tasks_as_manager, class_name: 'Task', foreign_key: :manager_id
   has_many :tasks_as_contributor, class_name: 'Assignment', foreign_key: :contributor_id
-
+  has_many :notes, dependent: :destroy
   def name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end

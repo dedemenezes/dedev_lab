@@ -1,0 +1,65 @@
+li.note__card {
+  background-color: antiquewhite;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+.note__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header__info {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  /* margin-bottom: 1.5rem; */
+}
+
+.header__info img.avatar {
+  margin-right: 1.5rem;
+}
+
+.header__info p {
+  margin-bottom: 0;
+}
+
+.header__actions > small {
+  margin-right: 1.5rem;
+}
+
+.section__header_title.note > h3, button {
+  // transition: all 1s ease-in-out;
+  transform: translateX(0);
+}
+
+.modal-header.note {
+  background-color: #8a2be280;
+  color: white;
+}
+
+.modal-header button.btn-close {
+  background-color: white;
+  border-radius: 50%;
+  padding: .5rem;
+  font-size: .7rem;
+}
+
+.section__notes .modal-footer {
+  background-color: #e9ecef;
+}
+
+.section__notes .modal-dialog {
+  max-width: 820px;
+}
+
+.btn__note {
+  background-color: #8a2be2ba;
+  border-color: #8a2be242;
+  border-radius: 8px;
+  color: white;
+  padding: 2px 24px;
+}

@@ -24,10 +24,58 @@
         <%= text_field_tag :filter, params[:filter], placeholder: 'Search...' %>
       <% end %>
     </div>
-    <div class="section__content">
+    <div class="section__content" style="margin-bottom: 2.5rem;">
       <ul data-controller='sortable' data-filter-target='list'>
         <%= render 'checklist_items/index', checklist_items: task.checklist_items %>
       </ul>
+    </div>
+    <div class="section__notes">
+      <div class="section__header">
+        <div class="section__header_title note">
+          <h3>Notes</h3>
+          <%= button_tag '+', type: 'button', class: 'btn__plus', data: { bs_toggle: "modal",  bs_target:"#noteModal" } %>
+        </div>
+
+        <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header note">
+                <h5 class="modal-title" id="noteModalLabel">New note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <%= simple_form_for [@task, @note] do |f| %>
+                <div class="modal-body">
+                  <div class="row mb-3">
+                    <div class="col-1">
+                      <%= f.label :title, required: true %>
+                    </div>
+                    <div class="col-11">
+                      <%= f.input :title, label: false %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-1">
+                      <%= f.label :rich_body, required: true %>
+                    </div>
+                    <div class="col-11">
+                      <%= f.rich_text_area :rich_body %>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <%# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> %>
+                  <%= f.submit class: 'btn__note' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section__content">
+        <ul>
+          <%= render @notes %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

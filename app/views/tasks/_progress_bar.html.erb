@@ -12,7 +12,7 @@
   <div class="icons">
     <i class="fas fa-bars bars-icon"></i>
     <i class="fas fa-check check-icon"></i>
-    <span data-update-checklist-item-target='amount'><%= checklist_items_completed.size %>/<%= checklist_size %></span>
+    <span data-update-checklist-item-target='amount'><%= @task.checklist_items_completed.size %>/<%= checklist_size %></span>
   </div>
   <p class='mb-0'>Due <%= time_ago_in_words(task.expected_end_date) %></p>
 </div>
