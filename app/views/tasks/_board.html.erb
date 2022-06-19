@@ -1,0 +1,33 @@
+<div class="board" data-controller='task-board'>
+  <div class="board__sections">
+    <ul>
+      <% %w[ Task File Activity ].each do |section| %>
+        <%= content_tag :li, section.capitalize, class: "#{'active active-hover' if section == 'Task'}", data: { action: 'click->task-board#changeSection', task_board_target: 'section'} %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="section" data-controller='filter'  data-filter-url-value='<%= task_checklist_items_path(task) %>'>
+    <div class="section__header">
+      <div class="section__header_title">
+        <span class='filter'>
+          <i class="fas fa-sort" data-action='click->filter#display'></i>
+          <div class="filter__pop input--hide"
+                data-filter-target='popup'
+                data-action='mouseleave->filter#hide'>
+            <%= button_tag 'Completed', type: 'button', class: 'clean_button', data: { action: 'click->filter#update',  } %>
+          </div>
+        </span>
+        <h3>Checklist</h3>
+        <%= button_tag '+', type: 'button', class: 'btn__plus' %>
+      </div>
+      <%= form_tag task_checklist_items_path(task), method: :get do %>
+        <%= text_field_tag :filter, params[:filter], placeholder: 'Search...' %>
+      <% end %>
+    </div>
+    <div class="section__content">
+      <ul data-controller='sortable' data-filter-target='list'>
+        <%= render 'checklist_items/index', checklist_items: task.checklist_items %>
+      </ul>
+    </div>
+  </div>
+</div>
