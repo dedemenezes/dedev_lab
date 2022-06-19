@@ -44,15 +44,18 @@ User.create!(
   nickname: 'pessanhadavi'
 )
 4.times do |n|
-  rand(1..3).times do |n_two|
+  rand(5..10).times do |n_two|
     Task.create!(
       name: "task #{n_two + 1}",
       manager: User.find(n + 1),
       expected_end_date: Date.today + (1..30).to_a.sample,
       capacity: rand(1..4)
     )
-    ChecklistItem.create! content: "TODO: item #{n + n_two}", task: Task.last
-    ChecklistItem.create! content: "TODO: item #{n + n_two}", task: Task.last, completed: true
+    rand(10..15).times do |number|
+      ChecklistItem.create! content: "TODO: item #{number}", task: Task.last, completed: [true, false].sample
+    end
+
+
   end
   ChecklistItem.last.update(completed: true)
 end
