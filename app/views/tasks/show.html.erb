@@ -35,7 +35,7 @@
             <% end %>
           </ul>
         </div>
-        <div class="section" data-controller='filter'>
+        <div class="section" data-controller='filter'  data-filter-url-value='<%= task_checklist_items_path(@task) %>'>
           <div class="section__header">
             <div class="section__header_title">
               <span class='filter'>
@@ -43,7 +43,7 @@
                 <div class="filter__pop input--hide"
                      data-filter-target='popup'
                      data-action='mouseleave->filter#hide'>
-                  <%= link_to 'Completed', task_checklist_items_path(@task) %>
+                  <%= button_tag 'Completed', type: 'button', class: 'clean_button', data: { action: 'click->filter#update',  } %>
                 </div>
               </span>
               <h3>Checklist</h3>

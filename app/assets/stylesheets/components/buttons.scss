@@ -1,0 +1,9 @@
+.clean_button {
+  border: 0;
+  background: transparent;
+  color: black;
+  &:hover {
+    color: lightgrey;
+  }
+  transition: color .2s ease-in-out;
+}
